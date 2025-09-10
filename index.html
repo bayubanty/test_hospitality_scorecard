@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georgia Hospital System Scorecard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="top-nav">
+                <div class="logo">
+                    <span>WATCH</span>
+                    <span>Georgia Watch</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#">Rankings</a>
+                    <a href="#">Methodology</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+            <div class="header-content">
+                <h1>GEORGIA WATCH</h1>
+                <p>Advocating for patients and protecting consumers since 2002</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-controls">
+                <div class="search-input">
+                    <input type="text" id="hospitalName" placeholder="Enter hospital name">
+                </div>
+                <div class="search-input">
+                    <input type="text" id="zipCode" placeholder="Enter zip code">
+                </div>
+                <div class="filter-select">
+                    <select id="hospitalType">
+                        <option value="">Filter by Hospital Type</option>
+                        <option value="rural">Rural</option>
+                        <option value="urban">Urban</option>
+                    </select>
+                </div>
+                <div class="search-button">
+                    <button id="searchBtn">SEARCH</button>
+                </div>
+            </div>
+
+            <div class="results-header">
+                <div>
+                    <span id="resultsCount">Viewing 5 results</span>
+                </div>
+                <div>
+                    <button class="download-button" id="downloadBtn">Download Results</button>
+                </div>
+            </div>
+
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th width="5%"></th>
+                        <th width="25%">Hospital Information</th>
+                        <th width="60%">Name Address/Location</th>
+                        <th width="10%">Details</th>
+                    </tr>
+                </thead>
+                <tbody id="hospitalResults">
+                    <!-- Results will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <section class="metrics-section">
+            <h2>CHOOSE A METRIC:</h2>
+            <ul class="metrics-list">
+                <li data-metric="birth">BIRTH</li>
+                <li data-metric="mars">MARS</li>
+                <li data-metric="witchers">WITCHERS</li>
+                <li data-metric="financialTransparency">Financial transparency and community benefit spending</li>
+                <li data-metric="healthcareAffordability">Healthcare Affordability and billing</li>
+                <li data-metric="accessAndResponsibility">Healthcare Access and Social Responsibility</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Georgia Watch</a>
+                    <a href="#">Rankings</a>
+                    <a href="#">Methodology</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Donate</a>
+                    <a href="#">Legal/Privacy</a>
+                    <a href="#">Site Map</a>
+                </div>
+                <div class="copyright">
+                    <p>Georgia Watch is a non-profit, nonpartisan 501(c)3 organization. © 2024 Georgia Watch. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
