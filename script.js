@@ -54,6 +54,44 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadResults();
     });
     
+    // NEW CONTENT: Sidebar download button
+    document.getElementById('sidebarDownloadBtn').addEventListener('click', function() {
+        downloadResults();
+    });
+    
+    // NEW CONTENT: Sidebar search button
+    document.getElementById('sidebarSearchBtn').addEventListener('click', function() {
+        // Update main search inputs with sidebar values
+        document.getElementById('hospitalName').value = document.getElementById('sidebarHospitalName').value;
+        document.getElementById('zipCode').value = document.getElementById('sidebarZipCode').value;
+        
+        // Set hospital type based on sidebar selection
+        const sidebarType = document.getElementById('sidebarHospitalType').value;
+        if (sidebarType) {
+            document.getElementById('hospitalType').value = sidebarType;
+        }
+        
+        filterHospitals();
+    });
+    
+    // NEW CONTENT: Sidebar reset button
+    document.getElementById('sidebarResetBtn').addEventListener('click', function() {
+        // Clear all sidebar inputs
+        document.getElementById('sidebarHospitalName').value = '';
+        document.getElementById('sidebarZipCode').value = '';
+        document.getElementById('sidebarHospitalType').value = '';
+        document.getElementById('sidebarCity').value = '';
+        
+        // Clear main search inputs
+        document.getElementById('hospitalName').value = '';
+        document.getElementById('zipCode').value = '';
+        document.getElementById('hospitalType').value = '';
+        
+        // Reset to show all hospitals
+        filteredHospitals = [...hospitalsData];
+        displayHospitals(filteredHospitals);
+    });
+    
     // Enter key functionality for search inputs
     document.getElementById('hospitalName').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -64,6 +102,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('zipCode').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             filterHospitals();
+        }
+    });
+    
+    // NEW CONTENT: Enter key for sidebar inputs
+    document.getElementById('sidebarHospitalName').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('sidebarSearchBtn').click();
+        }
+    });
+    
+    document.getElementById('sidebarZipCode').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('sidebarSearchBtn').click();
         }
     });
 
@@ -92,6 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const nameFilter = document.getElementById('hospitalName').value.toLowerCase();
         const zipFilter = document.getElementById('zipCode').value;
         const typeFilter = document.getElementById('hospitalType').value;
+        // NEW CONTENT: Get city filter from sidebar
+        const cityFilter = document.getElementById('sidebarCity').value;
         
         filteredHospitals = hospitalsData.filter(hospital => {
             const nameMatch = hospital.name.toLowerCase().includes(nameFilter);
@@ -99,8 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const typeMatch = !typeFilter || 
                 (typeFilter === 'rural' && hospital.criticalAccess === 'Yes') ||
                 (typeFilter === 'urban' && hospital.criticalAccess === 'No');
+            // NEW CONTENT: Add city filter
+            const cityMatch = !cityFilter || hospital.address.includes(cityFilter);
             
-            return nameMatch && zipMatch && typeMatch;
+            return nameMatch && zipMatch && typeMatch && cityMatch;
         });
         
         // Reapply metric sorting if one is selected
@@ -135,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "name": "Auckland Memorial Hospital",
                 "address": "Gordon Ave, Therrasville, GA 31792",
                 "beds": 250,
-                "criticalAccess": "Yes/No",
+                "criticalAccess": "Yes",
                 "system": "",
                 "county": "Thomas",
                 "type": "Nonprofit",
