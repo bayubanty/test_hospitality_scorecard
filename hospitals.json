@@ -6,7 +6,7 @@
       "name": "Auckland Memorial Hospital",
       "address": "Gordon Ave, Therrasville, GA 31792",
       "beds": 250,
-      "criticalAccess": "Yes/No",
+      "criticalAccess": "Yes",
       "system": "",
       "county": "Thomas",
       "type": "Nonprofit",
